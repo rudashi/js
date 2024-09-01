@@ -1,0 +1,10 @@
+services:
+  php.8.2:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/var/www/html'
+  composer:
+    image: composer
+    volumes:
+      - '.:/var/www/html'
