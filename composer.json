@@ -1,13 +1,29 @@
 {
     "name": "rudashi/js",
+    "description": "PHP arrays in JavaScript style",
+    "license": "MIT",
     "type": "library",
+    "keywords": [
+        "php",
+        "js",
+        "php2js"
+    ],
+    "authors": [
+        {
+            "name": "Borys Żmuda",
+            "email": "rudashi@gmail.com",
+            "homepage": "https://rudashi.github.io",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^8.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23.1",
+        "friendsofphp/php-cs-fixer": "^3.64.0",
         "pestphp/pest": "^3.0.0",
-        "rector/rector": "^1.2.4"
+        "phpstan/phpstan": "^1.12.0"
     },
     "autoload": {
         "psr-4": {
@@ -20,17 +36,14 @@
         }
     },
     "scripts": {
-        "lint": "pint",
-        "refactor": "rector",
-        "test:lint": "pint --test",
-        "test:refactor": "rector --dry-run",
+        "lint": "php-cs-fixer",
+        "test:lint": "php-cs-fixer check src --show-progress=dots -vvv",
         "test:types": "phpstan analyse",
         "test:arch": "pest --filter=arch",
         "test:type-coverage": "pest --type-coverage --min=100",
         "test:unit": "pest --parallel --coverage --min=100",
         "test": [
             "@test:lint",
-            "@test:refactor",
             "@test:types",
             "@test:type-coverage",
             "@test:unit"
