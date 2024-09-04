@@ -10,12 +10,12 @@ use Traversable;
  * @template TKey of array-key
  * @template-covariant TValue
  */
-class Map
+final readonly class Map
 {
     /**
      * @var array<TKey, TValue>
      */
-    protected array $items = [];
+    private array $items;
 
     /**
      * @param  object|string|array<TKey, TValue>|null|  $items
@@ -30,7 +30,7 @@ class Map
         return $this->items;
     }
 
-    protected function getArrayItems($items): array
+    private function getArrayItems(mixed $items): array
     {
         return match (true) {
             $items instanceof Traversable => iterator_to_array($items),
