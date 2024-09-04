@@ -25,11 +25,17 @@ final readonly class Map
         $this->items = $this->getArrayItems($items);
     }
 
+    /**
+     * @return array<TKey, TValue>
+     */
     public function toArray(): array
     {
         return $this->items;
     }
 
+    /**
+     * @return array<TKey, TValue>
+     */
     private function getArrayItems(mixed $items): array
     {
         return match (true) {
