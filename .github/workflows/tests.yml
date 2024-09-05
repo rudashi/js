@@ -25,4 +25,6 @@ jobs:
         run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Run test suite
+        env:
+          XDEBUG_MODE: coverage
         run: composer test
