@@ -2,6 +2,7 @@
     "name": "rudashi/js",
     "description": "PHP arrays in JavaScript style",
     "license": "MIT",
+    "version": "1.0.0",
     "type": "library",
     "keywords": [
         "php",
@@ -42,12 +43,13 @@
         "test:refactor": "rector --dry-run",
         "test:types": "phpstan analyse",
         "test:arch": "pest --filter=arch",
-        "test:type-coverage": "pest --type-coverage --min=100",
-        "test:unit": "pest --parallel --coverage --min=100",
+        "test:type-coverage": "pest --coverage --min=100",
+        "test:unit": "pest --testsuite=Unit",
         "test": [
             "@test:lint",
             "@test:refactor",
             "@test:types",
+            "@test:arch",
             "@test:type-coverage",
             "@test:unit"
         ]

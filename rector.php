@@ -6,7 +6,7 @@ use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__.'/src',
+        __DIR__ . '/src',
     ])
     ->withPreparedSets(
         deadCode: true,
@@ -15,4 +15,7 @@ return RectorConfig::configure()
         privatization: true,
         earlyReturn: true,
         strictBooleans: true,
+    )
+    ->withPhpSets(
+        php84: true,
     );
