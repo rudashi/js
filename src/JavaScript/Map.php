@@ -18,7 +18,7 @@ final readonly class Map
     private array $items;
 
     /**
-     * @param  object|string|array<TKey, TValue>|null|  $items
+     * @param  object|string|array<TKey, TValue>|null  $items
      */
     public function __construct(object|array|string|null $items = [])
     {
