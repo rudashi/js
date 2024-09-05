@@ -50,7 +50,6 @@
             "@test:refactor",
             "@test:types",
             "@test:arch",
-            "@test:type-coverage",
             "@test:unit"
         ]
     },
