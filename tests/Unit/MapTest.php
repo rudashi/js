@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Rudashi\JavaScript\Map;
 
 describe('create', function () {
-    it('map', function () {
+    test('map', function () {
         $map = new Map();
 
         expect($map)
@@ -13,7 +13,7 @@ describe('create', function () {
             ->toMatchArray([]);
     });
 
-    it('map from array', function () {
+    test('map from array', function () {
         $array = [[ 1, 'one' ],[ 2, 'two' ]];
         $map = new Map($array);
 
@@ -22,7 +22,7 @@ describe('create', function () {
             ->toMatchArray($array);
     });
 
-    it('map from a string', function () {
+    test('map from a string', function () {
         $string = 'foo';
         $map = new Map($string);
 
@@ -31,7 +31,7 @@ describe('create', function () {
             ->toMatchArray([$string]);
     });
 
-    it('map from an object', function () {
+    test('map from an object', function () {
         $object = new stdClass();
         $object->foo = 'bar';
 
@@ -42,7 +42,7 @@ describe('create', function () {
             ->toMatchArray(['foo' => 'bar']);
     });
 
-    it('map from a null', function () {
+    test('map from a null', function () {
         $map = new Map(null);
 
         expect($map)
