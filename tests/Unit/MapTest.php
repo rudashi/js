@@ -15,7 +15,7 @@ describe('create', function () {
     });
 
     test('map from array', function () {
-        $array = [[ 1, 'one' ],[ 2, 'two' ]];
+        $array = [[1, 'one'], [2, 'two']];
         $map = new Map($array);
 
         expect($map)
