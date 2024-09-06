@@ -98,3 +98,33 @@ describe('getArrayItems', function () {
             ->toMatchArray($null);
     });
 });
+
+describe('get', function () {
+    it('returns value', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->get('foo'))
+            ->toBe('bar');
+    });
+
+    it('returns value based on index', function () {
+        $map = new Map([1, 2, 3]);
+
+        expect($map->get(2))
+            ->toBe(3);
+    });
+
+    it('returns null', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->get(2))
+            ->toBeNull();
+    });
+
+    it('returns null when null', function () {
+        $map = new Map([1, 2, 3]);
+
+        expect($map->get(null))
+            ->toBeNull();
+    });
+});

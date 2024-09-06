@@ -26,6 +26,18 @@ final readonly class Map
     }
 
     /**
+     * Returns a specified element by a key.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
+     *
+     * @param  TKey  $key
+     * @return TValue|null
+     */
+    public function get(mixed $key): mixed
+    {
+        return $this->items[$key] ?? null;
+    }
+
+    /**
      * @return array<TKey, TValue>
      */
     public function toArray(): array

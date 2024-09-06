@@ -6,6 +6,7 @@ primitive values) may be used as either a key or a value.
 ## Standard built-in objects
 
 - [`Map() constructor`](#new-map)
+- [`Map.get()`](#mapget)
 
 ## Constructor
 
@@ -30,3 +31,22 @@ $myMap = new Map('one');
 ## Static methods
 
 ## Methods
+
+### Map.get()
+
+The `get()` method returns a specified element from map.
+
+```php
+$myMap = new Map([1, 'foo' => 'bar', 3]);
+
+$myMap->get('foo')
+// 'bar'
+
+$myMap->get(1)
+// 3
+
+$myMap->get(2)
+// null
+```
+
+
