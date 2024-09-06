@@ -27,3 +27,23 @@ pest()->extend(TestCase::class);
 | to assert different things. Of course, you may extend the Expectation API at any time.
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| Functions
+|--------------------------------------------------------------------------
+|
+| While Pest is very powerful out-of-the-box, you may have some testing code specific to your
+| project that you don't want to repeat in every file. Here you can also expose helpers as
+| global functions to help you to reduce the number of lines of code in your test files.
+|
+*/
+
+function reflectMethod(object $object, string $method, mixed $args): mixed
+{
+    try {
+        return (new ReflectionClass($object::class))->getMethod($method)->invokeArgs($object, [$args]);
+    } catch (ReflectionException) {
+        return null;
+    }
+}
