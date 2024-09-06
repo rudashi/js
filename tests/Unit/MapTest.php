@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rudashi\JavaScript\Map;
+use Tests\Fixtures\TraversableObject;
 
 describe('create', function () {
     test('map', function () {
@@ -48,5 +49,43 @@ describe('create', function () {
         expect($map)
             ->toBeInstanceOf(Map::class)
             ->toMatchArray([]);
+    });
+});
+
+describe('getArrayItems', function () {
+    test('Traversable', function () {
+        $items = [new stdClass, new stdClass];
+        $map = reflectMethod(new Map(), 'getArrayItems', new TraversableObject($items));
+
+        expect($map)
+            ->toBeArray()
+            ->toMatchArray($items);
+    });
+
+    test('array', function () {
+        $array = ['foo' => 'bar'];
+        $map = reflectMethod(new Map(), 'getArrayItems', $array);
+
+        expect($map)
+            ->toBeArray()
+            ->toMatchArray($array);
+    });
+
+    test('object', function () {
+        $object = [new stdClass];
+        $map = reflectMethod(new Map(), 'getArrayItems', $object);
+
+        expect($map)
+            ->toBeArray()
+            ->toMatchArray($object);
+    });
+
+    test('string', function () {
+        $string = ['foo'];
+        $map = reflectMethod(new Map(), 'getArrayItems', $string);
+
+        expect($map)
+            ->toBeArray()
+            ->toMatchArray($string);
     });
 });
