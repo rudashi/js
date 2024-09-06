@@ -13,11 +13,15 @@ use Traversable;
 final readonly class Map
 {
     /**
+     * The items contained in the Map.
+     *
      * @var array<TKey, TValue>
      */
     private array $items;
 
     /**
+     * Create a new Map instance.
+     *
      * @param  object|string|array<TKey, TValue>|null  $items
      */
     public function __construct(object|array|string|null $items = [])
