@@ -88,4 +88,13 @@ describe('getArrayItems', function () {
             ->toBeArray()
             ->toMatchArray($string);
     });
+
+    test('null', function () {
+        $null = [null];
+        $map = reflectMethod(new Map(), 'getArrayItems', $null);
+
+        expect($map)
+            ->toBeArray()
+            ->toMatchArray($null);
+    });
 });
