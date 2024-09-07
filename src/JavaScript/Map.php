@@ -33,10 +33,9 @@ final class Map
      * Returns a specified element by a key.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
      *
-     * @param  TKey  $key
      * @return TValue|null
      */
-    public function get(mixed $key): mixed
+    public function get(int|string|null $key): mixed
     {
         return $this->items[$key] ?? null;
     }
