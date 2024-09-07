@@ -10,7 +10,7 @@ use Traversable;
  * @template TKey of array-key
  * @template-covariant TValue
  */
-final readonly class Map
+final class Map
 {
     /**
      * The items contained in the Map.

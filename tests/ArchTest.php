@@ -12,7 +12,6 @@ arch('closed for extension')
     ->expect('Rudashi\JavaScript')
     ->classes()
     ->not->toBeAbstract()
-    ->toBeReadonly()
     ->toExtendNothing()
     ->toBeFinal();
 
