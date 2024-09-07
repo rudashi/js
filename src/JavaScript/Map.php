@@ -8,7 +8,7 @@ use Traversable;
 
 /**
  * @template TKey of array-key
- * @template-covariant TValue
+ * @template TValue
  */
 final class Map
 {
@@ -38,6 +38,24 @@ final class Map
     public function get(int|string|null $key): mixed
     {
         return $this->items[$key] ?? null;
+    }
+
+    /**
+     * Adds or updates an element with a specified key and a value.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set
+     *
+     * @param  TValue  $value
+     * @return self<TKey, TValue>
+     */
+    public function set(string|int|null $key, mixed $value): self
+    {
+        if ($key === null) {
+            $this->items[] = $value;
+        } else {
+            $this->items[$key] = $value;
+        }
+
+        return $this;
     }
 
     /**

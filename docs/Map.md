@@ -7,6 +7,7 @@ primitive values) may be used as either a key or a value.
 
 - [`Map() constructor`](#new-map)
 - [`Map.get()`](#mapget)
+- [`Map.set()`](#mapset)
 
 ## Constructor
 
@@ -39,14 +40,37 @@ The `get()` method returns a specified element from map.
 ```php
 $myMap = new Map([1, 'foo' => 'bar', 3]);
 
-$myMap->get('foo')
+$myMap->get('foo');
 // 'bar'
 
-$myMap->get(1)
+$myMap->get(1);
 // 3
 
-$myMap->get(2)
+$myMap->get(2);
 // null
+```
+
+### Map.set()
+
+The `set()` method adds or updates an element in map with a specified key and a value.
+
+```php
+$myMap = new Map();
+
+$myMap->set('foo', 'bar');
+// ['foo' => 'bar']
+
+$myMap->set(1, 'baz');
+// ['foo' => 'bar', 1 => 'baz']
+
+$myMap->set(null, 'foobar');
+// ['foo' => 'bar', 1 => 'baz', 2 => 'foobar']
+
+$myMap->set('foo', 'baz');
+// ['foo' => 'baz', 1 => 'baz', 2 => 'foobar']
+
+$myMap->set(null, 'first')->set(null, 'second');
+// ['foo' => 'baz', 1 => 'baz', 2 => 'foobar', 3 => 'first', 4 => 'second']
 ```
 
 

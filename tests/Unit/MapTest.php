@@ -128,3 +128,52 @@ describe('get', function () {
             ->toBeNull();
     });
 });
+
+describe('set', function () {
+    it('adds entry', function () {
+        $map = new Map();
+
+        $map->set('foo', 'bar');
+
+        expect($map->get('foo'))
+            ->toBe('bar');
+    });
+
+    it('adds nested entry', function () {
+        $map = new Map();
+
+        $map->set('foo', ['nested' => 'bar']);
+
+        expect($map->get('foo'))
+            ->toBe(['nested' => 'bar']);
+    });
+
+    it('adds only value', function () {
+        $map = new Map();
+
+        $map->set(null, 'bar');
+
+        expect($map->get(0))
+            ->toBe('bar');
+    });
+
+    it('update entry', function () {
+        $map = new Map(['foo' => 'bar']);
+
+        $map->set('foo', 'baz');
+
+        expect($map->get('foo'))
+            ->toBe('baz');
+    });
+
+    it('can chaining', function () {
+        $map = new Map();
+
+        $map->set('foo', 'bar')->set(1, 'foobar')->set(2, 'baz');
+
+        expect($map)
+            ->get('foo')?->toBe('bar')
+            ->get(1)?->toBe('foobar')
+            ->get(2)?->toBe('baz');
+    });
+});
