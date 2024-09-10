@@ -56,7 +56,7 @@ final class Map
      * @param  TValue  $value
      * @return self<TKey, TValue>
      */
-    public function set(string|int|null $key, mixed $value): self
+    public function set(int|string|null $key, mixed $value): self
     {
         if ($key === null) {
             $this->items[] = $value;
