@@ -129,6 +129,21 @@ describe('get', function () {
     });
 });
 
+test('has', function (mixed $key, bool $expected) {
+    $map = new Map([1, 'foo' => 'bar', 3]);
+
+    expect($map->has($key))
+        ->toBe($expected);
+})->with([
+    [0, true],
+    ['foo', true],
+    [1, true],
+    ['1', true],
+    [2, false],
+    [3, false],
+    [null, false],
+]);
+
 describe('set', function () {
     it('adds entry', function () {
         $map = new Map();

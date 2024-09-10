@@ -41,6 +41,15 @@ final class Map
     }
 
     /**
+     * Determine if an element with given key exists in the Map.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
+     */
+    public function has(int|string|null $key): bool
+    {
+        return (bool) ($this->items[$key] ?? false);
+    }
+
+    /**
      * Adds or updates an element with a specified key and a value.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set
      *
