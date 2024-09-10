@@ -7,6 +7,7 @@ primitive values) may be used as either a key or a value.
 
 - [`Map() constructor`](#new-map)
 - [`Map.get()`](#mapget)
+- [`Map.has()`](#maphas)
 - [`Map.set()`](#mapset)
 
 ## Constructor
@@ -48,6 +49,20 @@ $myMap->get(1);
 
 $myMap->get(2);
 // null
+```
+
+### Map.has()
+
+The `has()` method returns `TRUE` when element with the specified key exists in the Map or `FALSE` if it does not exist.
+
+```php
+$myMap = new Map(['foo' => 'bar']);
+
+$myMap->has('foo');
+// true
+
+$myMap->has('baz');
+// false
 ```
 
 ### Map.set()
