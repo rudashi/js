@@ -20,6 +20,11 @@ final class Map
     private array $items;
 
     /**
+     * Number of elements in the Map.
+     */
+    public static int $size = 0;
+
+    /**
      * Create a new Map instance.
      *
      * @param  object|string|array<TKey, TValue>|null  $items
