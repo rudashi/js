@@ -27,6 +27,21 @@ final class Map
     public function __construct(object|array|string|null $items = [])
     {
         $this->items = $this->getArrayItems($items);
+        self::$size = count($this->items);
+    }
+
+    /**
+     * Remove a specified element by a key.
+     * * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
+     */
+    public function delete(int|string $key): bool
+    {
+        if ($this->has($key)) {
+            unset($this->items[$key]);
+            return true;
+        }
+
+        return false;
     }
 
     /**

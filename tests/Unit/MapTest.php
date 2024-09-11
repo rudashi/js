@@ -99,6 +99,22 @@ describe('getArrayItems', function () {
     });
 });
 
+describe('delete', function () {
+    test('returns true on success', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->delete('foo'))
+            ->toBeTrue();
+    });
+
+    test('returns false on failure', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->delete('bar'))
+            ->toBeFalse();
+    });
+});
+
 describe('get', function () {
     it('returns value', function () {
         $map = new Map([1, 'foo' => 'bar', 3]);
