@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Rudashi\JavaScript;
 
+use InvalidArgumentException;
 use Traversable;
 
 /**
  * @template TKey of array-key
  * @template TValue
+ *
+ * @property int $size Number of elements in the Map.
  */
 final class Map
 {
@@ -22,7 +25,7 @@ final class Map
     /**
      * Number of elements in the Map.
      */
-    public static int $size = 0;
+    private int $length;
 
     /**
      * Create a new Map instance.
@@ -32,7 +35,35 @@ final class Map
     public function __construct(object|array|string|null $items = [])
     {
         $this->items = $this->getArrayItems($items);
-        self::$size = count($this->items);
+        $this->length = count($this->items);
+    }
+
+    /**
+     * Dynamically access a property.
+     */
+    public function __get(string $name): int
+    {
+        if ($name === 'size') {
+            return $this->length;
+        }
+
+        throw new InvalidArgumentException('Undefined property: ' . $name);
+    }
+
+    /**
+     * Dynamically write value to property.
+     */
+    public function __set(string $name, mixed $value): void
+    {
+        throw new InvalidArgumentException('Property [' . $name . '] is immutable');
+    }
+
+    /**
+     * Dynamically check a property exists.
+     */
+    public function __isset(string $name): bool
+    {
+        return isset($this->{$name});
     }
 
     /**
@@ -43,6 +74,8 @@ final class Map
     {
         if ($this->has($key)) {
             unset($this->items[$key]);
+            $this->decrementSize();
+
             return true;
         }
 
@@ -80,6 +113,7 @@ final class Map
     {
         if ($key === null) {
             $this->items[] = $value;
+            $this->incrementSize();
         } else {
             $this->items[$key] = $value;
         }
@@ -100,9 +134,25 @@ final class Map
      */
     private function getArrayItems(mixed $items): array
     {
-        return match (true) {
+        return match (true) { // @pest-mutate-ignore
             $items instanceof Traversable => iterator_to_array($items),
             default => (array) $items,
         };
+    }
+
+    /**
+     * Increment the Map size.
+     */
+    private function decrementSize(): void
+    {
+        --$this->length;
+    }
+
+    /**
+     * Decrement the Map size.
+     */
+    private function incrementSize(): void
+    {
+        ++$this->length;
     }
 }

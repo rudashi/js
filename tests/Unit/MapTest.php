@@ -5,6 +5,53 @@ declare(strict_types=1);
 use Rudashi\JavaScript\Map;
 use Tests\Fixtures\TraversableObject;
 
+covers(Map::class);
+
+describe('size property', function () {
+    it('has fixed value on create', function () {
+        $map = new Map(['foo' => 'bar']);
+
+        expect($map->size)
+            ->toBe(1);
+    });
+
+    it('increases when more elements', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->size)
+            ->toBe(3);
+
+        $map->set(null, 'baz');
+
+        expect($map->size)
+            ->toBe(4);
+    });
+
+    it('does not change when updating element', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->size)
+            ->toBe(3);
+
+        $map->set('foo', 'foo');
+
+        expect($map->size)
+            ->toBe(3);
+    });
+
+    it('decreases when fewer elements', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        expect($map->size)
+            ->toBe(3);
+
+        $map->delete('foo');
+
+        expect($map->size)
+            ->toBe(2);
+    });
+});
+
 describe('create', function () {
     test('map', function () {
         $map = new Map();
@@ -207,4 +254,42 @@ describe('set', function () {
             ->get(1)?->toBe('foobar')
             ->get(2)?->toBe('baz');
     });
+});
+
+describe('magic methods', function () {
+    it('access a property', function () {
+        $map = new Map();
+
+        expect($map->size)
+            ->toBe(0);
+    });
+
+    it('cannot access non existing property', function () {
+        $map = new Map();
+
+        /** @phpstan-ignore-line  */
+        expect(fn () => $map->length)->toThrow(
+            exception: InvalidArgumentException::class,
+            exceptionMessage: 'Undefined property: length',
+        );
+    });
+
+    it('cannot mutable private property', function () {
+        $map = new Map();
+
+        expect(fn () => $map->size = 1)->toThrow(
+            exception: InvalidArgumentException::class,
+            exceptionMessage: 'Property [size] is immutable',
+        );
+    });
+
+    it('check a property exists', function (string $name, bool $expected) {
+        $map = new Map();
+
+        expect(isset($map->{$name}))
+            ->toBe($expected);
+    })->with([
+        ['size', false],
+        ['length', true],
+    ]);
 });
