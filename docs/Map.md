@@ -6,10 +6,11 @@ primitive values) may be used as either a key or a value.
 ## Standard built-in objects
 
 - [`Map() constructor`](#new-map)
-- [`Map.delete()`](#mapdelete)
-- [`Map.get()`](#mapget)
-- [`Map.has()`](#maphas)
-- [`Map.set()`](#mapset)
+- [`Map::delete()`](#mapdelete)
+- [`Map::get()`](#mapget)
+- [`Map::has()`](#maphas)
+- [`Map::set()`](#mapset)
+- [`Map::size`](#mapsize)
 
 ## Constructor
 
@@ -35,7 +36,7 @@ $myMap = new Map('one');
 
 ## Methods
 
-### Map.delete()
+### Map::delete()
 
 The `delete()` method removes a specified element from map.
 
@@ -49,7 +50,7 @@ $myMap->delete(1);
 // false
 ```
 
-### Map.get()
+### Map::get()
 
 The `get()` method returns a specified element from map.
 
@@ -66,7 +67,7 @@ $myMap->get(2);
 // null
 ```
 
-### Map.has()
+### Map::has()
 
 The `has()` method returns `TRUE` when element with the specified key exists in the Map or `FALSE` if it does not exist.
 
@@ -80,7 +81,7 @@ $myMap->has('baz');
 // false
 ```
 
-### Map.set()
+### Map::set()
 
 The `set()` method adds or updates an element in map with a specified key and a value.
 
@@ -103,4 +104,19 @@ $myMap->set(null, 'first')->set(null, 'second');
 // ['foo' => 'baz', 1 => 'baz', 2 => 'foobar', 3 => 'first', 4 => 'second']
 ```
 
+## Properties
 
+### Map::size
+
+The `size` property returns numbers of elements from map.
+
+```php
+$myMap = new Map(['foo' => 'bar']);
+
+$myMap->size;
+// 1
+
+$myMap->delete('foo');
+$myMap->size;
+// 0
+```
