@@ -44,6 +44,7 @@
         "test:refactor": "rector --dry-run",
         "test:types": "phpstan analyse",
         "test:arch": "pest --filter=arch",
+        "test:mutation": "pest --mutate",
         "test:type-coverage": "pest --coverage --min=100",
         "test:unit": "pest --testsuite=Unit",
         "test": [
@@ -51,6 +52,7 @@
             "@test:refactor",
             "@test:types",
             "@test:arch",
+            "@test:mutation",
             "@test:unit"
         ]
     },
