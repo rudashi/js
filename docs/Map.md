@@ -6,6 +6,7 @@ primitive values) may be used as either a key or a value.
 ## Standard built-in objects
 
 - [`Map() constructor`](#new-map)
+- [`Map::clear()`](#mapclear)
 - [`Map::delete()`](#mapdelete)
 - [`Map::get()`](#mapget)
 - [`Map::has()`](#maphas)
@@ -35,6 +36,22 @@ $myMap = new Map('one');
 ## Static methods
 
 ## Methods
+
+### Map::clear()
+
+The `clear()` method removes all elements from map.
+
+```php
+$myMap = new Map(['foo' => 'bar']);
+
+$myMap->size;
+// 1
+
+$myMap->clear();
+
+$myMap->size;
+// 0
+```
 
 ### Map::delete()
 
