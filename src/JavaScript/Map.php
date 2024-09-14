@@ -67,6 +67,15 @@ final class Map
     }
 
     /**
+     * Removes all elements from.
+     */
+    public function clear(): void
+    {
+        $this->items = [];
+        $this->length = 0;
+    }
+
+    /**
      * Remove a specified element by a key.
      * * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
      */

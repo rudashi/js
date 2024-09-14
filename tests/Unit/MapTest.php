@@ -146,6 +146,24 @@ describe('getArrayItems', function () {
     });
 });
 
+describe('clear', function () {
+    test('removes all elements', function () {
+        $map = new Map([1, 'foo' => 'bar', 3]);
+
+        $map->clear();
+
+        expect($map->size)
+            ->tobe(0);
+    });
+
+    test('returns void', function () {
+        $reflection = reflect(Map::class, 'clear');
+
+        expect($reflection->getReturnType())
+            ->getName()->toBe('void');
+    });
+});
+
 describe('delete', function () {
     test('returns true on success', function () {
         $map = new Map([1, 'foo' => 'bar', 3]);
