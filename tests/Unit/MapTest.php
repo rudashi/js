@@ -102,7 +102,7 @@ describe('create', function () {
 describe('getArrayItems', function () {
     test('Traversable', function () {
         $items = [new stdClass, new stdClass];
-        $map = reflectMethod(new Map(), 'getArrayItems', new TraversableObject($items));
+        $map = callReflectMethod(new Map(), 'getArrayItems', new TraversableObject($items));
 
         expect($map)
             ->toBeArray()
@@ -111,7 +111,7 @@ describe('getArrayItems', function () {
 
     test('array', function () {
         $array = ['foo' => 'bar'];
-        $map = reflectMethod(new Map(), 'getArrayItems', $array);
+        $map = callReflectMethod(new Map(), 'getArrayItems', $array);
 
         expect($map)
             ->toBeArray()
@@ -120,7 +120,7 @@ describe('getArrayItems', function () {
 
     test('object', function () {
         $object = [new stdClass];
-        $map = reflectMethod(new Map(), 'getArrayItems', $object);
+        $map = callReflectMethod(new Map(), 'getArrayItems', $object);
 
         expect($map)
             ->toBeArray()
@@ -129,7 +129,7 @@ describe('getArrayItems', function () {
 
     test('string', function () {
         $string = ['foo'];
-        $map = reflectMethod(new Map(), 'getArrayItems', $string);
+        $map = callReflectMethod(new Map(), 'getArrayItems', $string);
 
         expect($map)
             ->toBeArray()
@@ -138,7 +138,7 @@ describe('getArrayItems', function () {
 
     test('null', function () {
         $null = [null];
-        $map = reflectMethod(new Map(), 'getArrayItems', $null);
+        $map = callReflectMethod(new Map(), 'getArrayItems', $null);
 
         expect($map)
             ->toBeArray()
@@ -157,7 +157,7 @@ describe('clear', function () {
     });
 
     test('returns void', function () {
-        $reflection = reflect(Map::class, 'clear');
+        $reflection = reflectMethod(Map::class, 'clear');
 
         expect($reflection->getReturnType())
             ->getName()->toBe('void');

@@ -38,12 +38,22 @@ pest()->extend(TestCase::class);
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-function reflect(string $className, string $method): ReflectionMethod
+function reflect(string $className): ReflectionClass
 {
-    return (fn (): ReflectionMethod => (new ReflectionClass($className))->getMethod($method))();
+    return (fn (): ReflectionClass => new ReflectionClass($className))();
 }
 
-function reflectMethod(object $object, string $method, mixed $args): mixed
+function reflectMethod(string $className, string $method): ReflectionMethod
 {
-    return (fn (): mixed => reflect($object::class, $method)->invokeArgs($object, [$args]))();
+    return (fn (): ReflectionMethod => reflect($className)->getMethod($method))();
+}
+
+function reflectProperty(string $className, string $property): ReflectionProperty
+{
+    return (fn (): ReflectionProperty => reflect($className)->getProperty($property))();
+}
+
+function callReflectMethod(object $object, string $method, mixed $args): mixed
+{
+    return (fn (): mixed => reflectMethod($object::class, $method)->invokeArgs($object, [$args]))();
 }
