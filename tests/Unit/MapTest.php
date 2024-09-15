@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rudashi\JavaScript\Map;
+use Rudashi\JavaScript\MapIterator;
 use Tests\Fixtures\TraversableObject;
 
 covers(Map::class);
@@ -224,6 +225,19 @@ test('has', function (mixed $key, bool $expected) {
     [3, false],
     [null, false],
 ]);
+
+describe('keys', function () {
+    it('returns new map instance', function () {
+        $map = new Map(['foo', 'bar']);
+
+        $newMap = $map->keys();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe(0)
+            ->next()?->toBe(1);
+    });
+});
 
 describe('set', function () {
     it('adds entry', function () {

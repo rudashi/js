@@ -112,6 +112,14 @@ final class Map
     }
 
     /**
+     * @return \Rudashi\JavaScript\MapIterator<TKey, TValue>
+     */
+    public function keys(): MapIterator
+    {
+        return new MapIterator(array_keys($this->items));
+    }
+
+    /**
      * Adds or updates an element with a specified key and a value.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set
      *
