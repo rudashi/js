@@ -237,6 +237,16 @@ describe('keys', function () {
             ->current()?->toBe(0)
             ->next()?->toBe(1);
     });
+
+    it('returns map keys', function () {
+        $map = new Map(['foo' => 'bar']);
+
+        $newMap = $map->keys();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe('foo');
+    });
 });
 
 describe('set', function () {
