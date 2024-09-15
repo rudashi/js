@@ -10,6 +10,7 @@ primitive values) may be used as either a key or a value.
 - [`Map::delete()`](#mapdelete)
 - [`Map::get()`](#mapget)
 - [`Map::has()`](#maphas)
+- [`Map::keys()`](#mapkeys)
 - [`Map::set()`](#mapset)
 - [`Map::size`](#mapsize)
 
@@ -96,6 +97,20 @@ $myMap->has('foo');
 
 $myMap->has('baz');
 // false
+```
+
+### Map::keys()
+
+The `keys()` method returns a new `MapIterator` instance that contain the keys of each element of the Map.
+
+```php
+$myMap = new Map(['foo' => 'bar']);
+
+$iterator = $myMap->keys();
+// [object MapIterator]
+
+$iterator->current();
+// 'foo'
 ```
 
 ### Map::set()
