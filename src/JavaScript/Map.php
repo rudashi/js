@@ -68,6 +68,7 @@ final class Map
 
     /**
      * Removes all elements from.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear
      */
     public function clear(): void
     {
@@ -77,7 +78,7 @@ final class Map
 
     /**
      * Remove a specified element by a key.
-     * * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
      */
     public function delete(int|string $key): bool
     {
@@ -112,6 +113,9 @@ final class Map
     }
 
     /**
+     * Returns Map keys as MapIterator.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys
+     *
      * @return \Rudashi\JavaScript\MapIterator<TKey, TValue>
      */
     public function keys(): MapIterator
