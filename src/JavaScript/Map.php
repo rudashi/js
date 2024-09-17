@@ -93,6 +93,19 @@ final class Map
     }
 
     /**
+     * Returns Map [key => value] pairs for each element as MapIterator.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries
+     *
+     * @return \Rudashi\JavaScript\MapIterator<array-key, non-empty-array<TKey, TValue>>
+     */
+    public function entries(): MapIterator
+    {
+        return new MapIterator(
+            array_map(static fn ($item, $key) => [$key => $item], $this->items, array_keys($this->items))
+        );
+    }
+
+    /**
      * Returns a specified element by a key.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
      *

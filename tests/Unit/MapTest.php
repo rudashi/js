@@ -181,6 +181,31 @@ describe('delete', function () {
     });
 });
 
+describe('entries', function () {
+    it('returns new MapIterator', function () {
+        $map = new Map(['foo', 'bar']);
+
+        $newMap = $map->entries();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe([0 => 'foo'])
+            ->next()?->toBe([1 => 'bar']);
+    });
+
+    it('returns map elements', function () {
+        $map = new Map(['foo' => 'bar', 'baz', '2' => 'boo']);
+
+        $newMap = $map->entries();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe(['foo' => 'bar'])
+            ->next()?->toBe([0 => 'baz'])
+            ->next()?->toBe(['2' => 'boo']);
+    });
+});
+
 describe('get', function () {
     it('returns value', function () {
         $map = new Map([1, 'foo' => 'bar', 3]);
@@ -227,7 +252,7 @@ test('has', function (mixed $key, bool $expected) {
 ]);
 
 describe('keys', function () {
-    it('returns new map instance', function () {
+    it('returns new MapIterator', function () {
         $map = new Map(['foo', 'bar']);
 
         $newMap = $map->keys();
