@@ -8,6 +8,7 @@ primitive values) may be used as either a key or a value.
 - [`Map() constructor`](#new-map)
 - [`Map::clear()`](#mapclear)
 - [`Map::delete()`](#mapdelete)
+- [`Map::entries()`](#mapentries)
 - [`Map::get()`](#mapget)
 - [`Map::has()`](#maphas)
 - [`Map::keys()`](#mapkeys)
@@ -66,6 +67,20 @@ $myMap->delete('foo');
 
 $myMap->delete(1);
 // false
+```
+
+### Map::entries()
+
+The `entries()` method returns a new `MapIterator` instance that contain pair `[key => value]` of each element of the Map.
+
+```php
+$myMap = new Map(['foo' => 'bar']);
+
+$iterator = $myMap->entries();
+// [object MapIterator]
+
+$iterator->current();
+// ['foo' => 'bar']
 ```
 
 ### Map::get()
