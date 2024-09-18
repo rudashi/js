@@ -9,6 +9,7 @@ primitive values) may be used as either a key or a value.
 - [`Map::clear()`](#mapclear)
 - [`Map::delete()`](#mapdelete)
 - [`Map::entries()`](#mapentries)
+- [`Map::forEach()`](#mapforeach)
 - [`Map::get()`](#mapget)
 - [`Map::has()`](#maphas)
 - [`Map::keys()`](#mapkeys)
@@ -82,6 +83,18 @@ $iterator = $myMap->entries();
 
 $iterator->current();
 // ['foo' => 'bar']
+```
+
+### Map::forEach()
+
+The `forEach()` method executes a provided function once per each element of the Map.
+
+```php
+$myMap = new Map(['foo' => 3, 'bar' => 0]);
+
+$myMap->forEach(function (int $value, string $key, Map $map) {
+    // ...
+});
 ```
 
 ### Map::get()
