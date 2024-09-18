@@ -13,6 +13,7 @@ primitive values) may be used as either a key or a value.
 - [`Map::has()`](#maphas)
 - [`Map::keys()`](#mapkeys)
 - [`Map::set()`](#mapset)
+- [`Map::values()`](#mapvalues)
 - [`Map::size`](#mapsize)
 
 ## Constructor
@@ -149,6 +150,20 @@ $myMap->set('foo', 'baz');
 
 $myMap->set(null, 'first')->set(null, 'second');
 // ['foo' => 'baz', 1 => 'baz', 2 => 'foobar', 3 => 'first', 4 => 'second']
+```
+
+### Map::values()
+
+The `values()` method returns a new `MapIterator` instance that contain the values of each element of the Map.
+
+```php
+$myMap = new Map(['foo' => 'bar']);
+
+$iterator = $myMap->values();
+// [object MapIterator]
+
+$iterator->current();
+// 'bar'
 ```
 
 ## Properties
