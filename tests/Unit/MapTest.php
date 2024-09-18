@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Pest\Expectation;
 use Rudashi\JavaScript\Map;
 use Rudashi\JavaScript\MapIterator;
 use Tests\Fixtures\TraversableObject;
@@ -203,6 +204,56 @@ describe('entries', function () {
             ->current()?->toBe(['foo' => 'bar'])
             ->next()?->toBe([0 => 'baz'])
             ->next()?->toBe(['2' => 'boo']);
+    });
+});
+
+describe('forEach', function () {
+    test('iterate on every element', function () {
+        $result = [];
+
+        (new Map([2, 5, 9]))->forEach(function ($value, $key) use (&$result) {
+            $result[$key] = $value * 2;
+        });
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray([4, 10, 18]);
+    });
+
+    test('not change original map', function () {
+        $result = [];
+
+        $map = new Map([2, 5, 9]);
+        $map->forEach(function ($value, $key) use (&$result) {
+            $result[$key] = $value * 2;
+        });
+
+        expect($map)
+            ->toBeInstanceOf(Map::class)
+            ->toMatchArray([2, 5, 9]);
+    });
+
+    test('has access to Map inside loop', function () {
+        $result = [];
+
+        $map = new Map([2, 5, 9]);
+        $map->forEach(function ($value, $key, $map) use (&$result) {
+            $result[] = $map;
+        });
+
+        expect($result)
+            ->toBeArray()
+            ->sequence(fn (Expectation $item) => $item->toBeInstanceOf(Map::class));
+    });
+
+    test('can use arrow function', function () {
+        $map = new Map();
+
+        (new Map([2, 5, 9]))->forEach(fn ($value, $key) => $map->set($key, $value * 2));
+
+        expect($map)
+            ->toBeInstanceOf(Map::class)
+            ->toMatchArray([4, 10, 18]);
     });
 });
 

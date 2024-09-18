@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rudashi\JavaScript;
 
+use Closure;
 use InvalidArgumentException;
 use Traversable;
 
@@ -103,6 +104,19 @@ final class Map
         return new MapIterator(
             array_map(static fn ($item, $key) => [$key => $item], $this->items, array_keys($this->items))
         );
+    }
+
+    /**
+     * Returns a specified element by a key.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
+     *
+     * @param  \Closure(TValue, TKey, \Rudashi\JavaScript\Map<TKey, TValue>): void  $callback
+     */
+    public function forEach(Closure $callback): void
+    {
+        foreach ($this->items as $key => $item) {
+            $callback($item, $key, $this);
+        }
     }
 
     /**
