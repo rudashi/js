@@ -52,8 +52,8 @@
             "@test:refactor",
             "@test:types",
             "@test:arch",
-            "@test:mutation",
-            "@test:unit"
+            "@test:unit",
+            "@test:mutation"
         ]
     },
     "config": {
