@@ -164,6 +164,17 @@ final class Map
     }
 
     /**
+     * Returns Map values as MapIterator.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values
+     *
+     * @return \Rudashi\JavaScript\MapIterator<TKey, TValue>
+     */
+    public function values(): MapIterator
+    {
+        return new MapIterator(array_values($this->items));
+    }
+
+    /**
      * @return array<TKey, TValue>
      */
     private function getArrayItems(mixed $items): array

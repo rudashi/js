@@ -323,6 +323,29 @@ describe('set', function () {
     });
 });
 
+describe('values', function () {
+    it('returns new MapIterator', function () {
+        $map = new Map(['foo', 'bar']);
+
+        $newMap = $map->values();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe('foo')
+            ->next()?->toBe('bar');
+    });
+
+    it('returns map values', function () {
+        $map = new Map(['foo' => 'bar']);
+
+        $newMap = $map->values();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe('bar');
+    });
+});
+
 describe('magic methods', function () {
     it('access a property', function () {
         $map = new Map();
