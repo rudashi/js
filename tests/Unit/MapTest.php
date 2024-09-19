@@ -401,6 +401,17 @@ describe('values', function () {
     });
 });
 
+describe('toArray', function () {
+    $array = ['foo', 'bar'];
+    $map = new Map($array);
+
+    $result = $map->toArray();
+
+    expect($result)
+        ->toBeArray()
+        ->toMatchArray($array);
+});
+
 describe('magic methods', function () {
     it('access a property', function () {
         $map = new Map();
