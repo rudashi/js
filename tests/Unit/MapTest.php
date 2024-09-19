@@ -107,7 +107,7 @@ describe('create', function () {
 
 describe('getArrayItems', function () {
     test('Traversable', function () {
-        $items = [new stdClass, new stdClass];
+        $items = [new stdClass(), new stdClass()];
         $map = callReflectMethod(new Map(), 'getArrayItems', new TraversableObject($items));
 
         expect($map)
@@ -125,7 +125,7 @@ describe('getArrayItems', function () {
     });
 
     test('object', function () {
-        $object = [new stdClass];
+        $object = [new stdClass()];
         $map = callReflectMethod(new Map(), 'getArrayItems', $object);
 
         expect($map)
