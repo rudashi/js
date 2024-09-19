@@ -1,0 +1,167 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Unit;
+
+use Rudashi\JavaScript\Set;
+use stdClass;
+use Tests\Fixtures\TraversableObject;
+
+covers(Set::class);
+
+describe('create', function () {
+    test('Set', function () {
+        $set = new Set();
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([]);
+    });
+
+    test('Set from an array', function () {
+        $array = [1, 2, 3, 4];
+        $set = new Set($array);
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($array);
+    });
+
+    test('Set from a nested array', function () {
+        $array = [[1, 'one'], [2, 'two']];
+        $set = new Set($array);
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($array);
+    });
+
+    test('Set from an object', function () {
+        $array = [new stdClass(), 0];
+        $set = new Set($array);
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($array);
+    });
+
+    test('Set from a Traversable', function () {
+        $array = [1, 0, 4];
+        $set = new Set(new TraversableObject($array));
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($array);
+    });
+
+    test('SET with only unique values', function () {
+        $set = new Set([1, 2, 2, 3, 4, 4]);
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([1, 2, 3, 4]);
+    });
+});
+
+describe('toArray', function () {
+    $array = ['foo', 'bar'];
+    $set = new Set($array);
+
+    $result = $set->toArray();
+
+    expect($result)
+        ->toBeArray()
+        ->toMatchArray($array);
+});
+
+describe('getArrayItems', function () {
+    test('Traversable', function () {
+        $items = [new stdClass(), new stdClass()];
+        $set = callReflectMethod(new Set(), 'getArrayItems', new TraversableObject($items));
+
+        expect($set)
+            ->toBeArray()
+            ->toMatchArray($items);
+    });
+
+    test('array', function () {
+        $array = ['foo' => 'bar'];
+        $set = callReflectMethod(new Set(), 'getArrayItems', $array);
+
+        expect($set)
+            ->toBeArray()
+            ->toMatchArray($array);
+    });
+
+    test('object', function () {
+        $object = [new stdClass()];
+        $set = callReflectMethod(new Set(), 'getArrayItems', $object);
+
+        expect($set)
+            ->toBeArray()
+            ->toMatchArray($object);
+    });
+
+    test('string', function () {
+        $string = ['foo'];
+        $set = callReflectMethod(new Set(), 'getArrayItems', $string);
+
+        expect($set)
+            ->toBeArray()
+            ->toMatchArray($string);
+    });
+
+    test('null', function () {
+        $null = [null];
+        $set = callReflectMethod(new Set(), 'getArrayItems', $null);
+
+        expect($set)
+            ->toBeArray()
+            ->toMatchArray($null);
+    });
+});
+
+describe('unique', function () {
+    test('integers', function () {
+        $result = callReflectMethod(new Set(), 'unique', [1, 2, 3, 2, 4, 5, 1]);
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray([1, 2, 3, 4, 5]);
+    });
+
+    test('different types', function () {
+        $array = [1, '1', 0, '0'];
+        $result = callReflectMethod(new Set(), 'unique', $array);
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray($array);
+    });
+
+    test('object', function () {
+        $object = [(object) ['foo' => 'bar'], (object) ['foo' => 'bar']];
+        $result = callReflectMethod(new Set(), 'unique', $object);
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray($object);
+    });
+
+    test('string', function () {
+        $result = callReflectMethod(new Set(), 'unique', ['foo', 'bar', 'bar', 'foo']);
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray(['foo', 'bar']);
+    });
+
+    test('mixed', function () {
+        $result = callReflectMethod(new Set(), 'unique', [1, 'foo', 1, null, 'foo']);
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray([1, 'foo', null]);
+    });
+});
