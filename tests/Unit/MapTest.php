@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit;
+
+use InvalidArgumentException;
 use Pest\Expectation;
 use Rudashi\JavaScript\Map;
 use Rudashi\JavaScript\MapIterator;
+use stdClass;
 use Tests\Fixtures\TraversableObject;
 
 covers(Map::class);

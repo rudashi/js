@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\JavaScript;
+namespace Tests\Unit;
 
 use Rudashi\JavaScript\MapIterator;
 
