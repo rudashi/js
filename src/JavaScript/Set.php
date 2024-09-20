@@ -20,6 +20,8 @@ final readonly class Set
     private array $items;
 
     /**
+     * Create a new Set instance.
+     *
      * @param  iterable<array-key, TValue>  $items
      */
     public function __construct(iterable $items = [])
@@ -28,9 +30,10 @@ final readonly class Set
     }
 
     /**
-     * @param  TValue  $value
+     * Determine if an element with given value exists in the Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has
      *
-     * @return bool
+     * @param  TValue  $value
      */
     public function has(mixed $value): bool
     {
