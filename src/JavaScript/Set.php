@@ -28,6 +28,16 @@ final readonly class Set
     }
 
     /**
+     * @param  TValue  $value
+     *
+     * @return bool
+     */
+    public function has(mixed $value): bool
+    {
+        return in_array($value, $this->items, true);
+    }
+
+    /**
      * @return array<int, TValue>
      */
     public function toArray(): array

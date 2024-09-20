@@ -165,3 +165,19 @@ describe('unique', function () {
             ->toMatchArray([1, 'foo', null]);
     });
 });
+
+test('has', function (mixed $key, bool $expected) {
+    $set = new Set([1, 'foo' => 'bar', 3]);
+
+    expect($set->has($key))
+        ->toBe($expected);
+})->with([
+    [0, false],
+    ['foo', false],
+    [1, true],
+    ['1', false],
+    [2, false],
+    [3, true],
+    [null, false],
+    ['bar', true],
+]);
