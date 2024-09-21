@@ -5,6 +5,7 @@ The Set object holds only unique values of any type.
 ## Standard built-in objects
 
 - [`Set() constructor`](#new-set)
+- [`Set::add()`](#setadd)
 - [`Set::has()`](#sethas)
 
 ## Constructor
@@ -21,6 +22,35 @@ $set = new Set(['foo', 'bar', 'foo']);
 ## Static methods
 
 ## Methods
+
+### Set::add()
+
+The `add()` method adds a new element in to Set.
+
+```php
+$set = new Set();
+
+$set->add(40);
+// [40]
+
+$set->add('first')->add('second');
+// [40, 'first', 'second']
+```
+
+Values are always unique.
+
+```php
+$set = new Set();
+
+$set->add(40);
+// [40]
+
+$set->add('first')->add('second');
+// [40, 'first', 'second']
+
+$set->add(40)->add('second');
+// [40, 'first', 'second']
+```
 
 ### Set::has()
 
