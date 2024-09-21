@@ -10,7 +10,7 @@ use Traversable;
  * @template TValue
  *
  */
-final readonly class Set
+final class Set
 {
     /**
      * The items contained in the Map.
@@ -27,6 +27,23 @@ final readonly class Set
     public function __construct(iterable $items = [])
     {
         $this->items = $this->unique($this->getArrayItems($items));
+    }
+
+    /**
+     * Insert a new element into Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add
+     *
+     * @param  TValue  $value
+     *
+     * @return \Rudashi\JavaScript\Set<TValue>
+ */
+    public function add(mixed $value): self
+    {
+        if (! $this->has($value)) {
+            $this->items[] = $value;
+        }
+
+        return $this;
     }
 
     /**

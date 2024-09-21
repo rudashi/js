@@ -166,6 +166,35 @@ describe('unique', function () {
     });
 });
 
+describe('add', function () {
+    test('adds entry', function () {
+        $set = new Set();
+
+        $set->add(40);
+
+        expect($set)
+            ->toMatchArray([40]);
+    });
+
+    test('is chainable', function () {
+        $set = new Set();
+
+        $set->add(40)->add('some text');
+
+        expect($set)
+            ->toMatchArray([40, 'some text']);
+    });
+
+    test('skip duplicate value', function () {
+        $set = new Set();
+
+        $set->add(40)->add(40);
+
+        expect($set)
+            ->toMatchArray([40]);
+    });
+});
+
 test('has', function (mixed $key, bool $expected) {
     $set = new Set([1, 'foo' => 'bar', 3]);
 
