@@ -8,7 +8,6 @@ use Traversable;
 
 /**
  * @template TValue
- *
  */
 final class Set
 {

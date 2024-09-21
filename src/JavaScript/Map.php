@@ -155,6 +155,7 @@ final class Map
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set
      *
      * @param  TValue  $value
+     *
      * @return self<TKey, TValue>
      */
     public function set(int|string|null $key, mixed $value): self
