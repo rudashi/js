@@ -195,6 +195,22 @@ describe('add', function () {
     });
 });
 
+describe('delete', function () {
+    test('returns true on success', function () {
+        $set = new Set([1, 'foo', 3]);
+
+        expect($set->delete('foo'))
+            ->toBeTrue();
+    });
+
+    test('returns false on failure', function () {
+        $set = new Set([1, 'foo', 3]);
+
+        expect($set->delete('bar'))
+            ->toBeFalse();
+    });
+});
+
 test('has', function (mixed $key, bool $expected) {
     $set = new Set([1, 'foo' => 'bar', 3]);
 

@@ -46,6 +46,23 @@ final class Set
     }
 
     /**
+     * Remove a specified element from the Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/get
+     *
+     * @param  TValue  $value
+     */
+    public function delete(mixed $value): bool
+    {
+        if ($key = array_search($value, $this->items, true)) {
+            unset($this->items[$key]);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Determine if an element with given value exists in the Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has
      *
