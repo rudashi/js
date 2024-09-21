@@ -6,6 +6,7 @@ The Set object holds only unique values of any type.
 
 - [`Set() constructor`](#new-set)
 - [`Set::add()`](#setadd)
+- [`Set::delete()`](#setdelete)
 - [`Set::has()`](#sethas)
 
 ## Constructor
@@ -50,6 +51,20 @@ $set->add('first')->add('second');
 
 $set->add(40)->add('second');
 // [40, 'first', 'second']
+```
+
+### Set::delete()
+
+The `delete()` method removes a specified value from the Set.
+
+```php
+$set = new Set(['foo', 'bar']);
+
+$set->delete('foo');
+// true
+
+$set->delete(1);
+// false
 ```
 
 ### Set::has()
