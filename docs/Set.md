@@ -8,6 +8,7 @@ The Set object holds only unique values of any type.
 - [`Set::add()`](#setadd)
 - [`Set::delete()`](#setdelete)
 - [`Set::has()`](#sethas)
+- [`Set::size`](#setsize)
 
 ## Constructor
 
@@ -82,3 +83,18 @@ $set->has(6);
 ```
 
 ## Properties
+
+### Set::size
+
+The `size` property returns number of elements from the Set.
+
+```php
+$set = new Set(['foo', 'bar']);
+
+$set->size;
+// 2
+
+$set->delete('foo');
+$set->size;
+// 1
+```
