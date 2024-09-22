@@ -68,7 +68,7 @@ final class Map
     }
 
     /**
-     * Removes all elements from.
+     * Removes all elements from the Map.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear
      */
     public function clear(): void
