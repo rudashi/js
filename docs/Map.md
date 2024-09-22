@@ -183,7 +183,7 @@ $iterator->current();
 
 ### Map::size
 
-The `size` property returns numbers of elements from map.
+The `size` property returns number of elements from the Map.
 
 ```php
 $myMap = new Map(['foo' => 'bar']);
