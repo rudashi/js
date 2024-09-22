@@ -77,6 +77,7 @@ final class Set
     {
         if (! $this->has($value)) {
             $this->items[] = $value;
+            $this->incrementSize();
         }
 
         return $this;
@@ -92,6 +93,7 @@ final class Set
     {
         if ($key = array_search($value, $this->items, true)) {
             unset($this->items[$key]);
+            $this->decrementSize();
 
             return true;
         }
@@ -149,5 +151,21 @@ final class Set
 
             return true;
         }));
+    }
+
+    /**
+     * Increment the Set size.
+     */
+    private function decrementSize(): void
+    {
+        --$this->length;
+    }
+
+    /**
+     * Decrement the Set size.
+     */
+    private function incrementSize(): void
+    {
+        ++$this->length;
     }
 }

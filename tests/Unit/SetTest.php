@@ -11,6 +11,51 @@ use Tests\Fixtures\TraversableObject;
 
 covers(Set::class);
 
+describe('size property', function () {
+    it('has fixed value on create', function () {
+        $set = new Set(['foo']);
+
+        expect($set->size)
+            ->toBe(1);
+    });
+
+    it('increases when more elements', function () {
+        $set = new Set([1, 'foo', 'bar', 3]);
+
+        expect($set->size)
+            ->toBe(4);
+
+        $set->add('baz');
+
+        expect($set->size)
+            ->toBe(5);
+    });
+
+    it('does not change when add the same element', function () {
+        $set = new Set([1, 'foo', 'bar', 3]);
+
+        expect($set->size)
+            ->toBe(4);
+
+        $set->add('foo');
+
+        expect($set->size)
+            ->toBe(4);
+    });
+
+    it('decreases when remove elements', function () {
+        $set = new Set([1, 'foo', 'bar', 3]);
+
+        expect($set->size)
+            ->toBe(4);
+
+        $set->delete('foo');
+
+        expect($set->size)
+            ->toBe(3);
+    });
+});
+
 describe('create', function () {
     test('Set', function () {
         $set = new Set();
