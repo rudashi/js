@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Rudashi\JavaScript;
 
+use InvalidArgumentException;
 use Traversable;
 
 /**
  * @template TValue
+ *
+ * @property int $size Number of elements in the Set.
  */
 final class Set
 {
@@ -19,6 +22,11 @@ final class Set
     private array $items;
 
     /**
+     * Number of elements in the Set.
+     */
+    private int $length;
+
+    /**
      * Create a new Set instance.
      *
      * @param  iterable<array-key, TValue>  $items
@@ -26,6 +34,35 @@ final class Set
     public function __construct(iterable $items = [])
     {
         $this->items = $this->unique($this->getArrayItems($items));
+        $this->length = count($this->items);
+    }
+
+    /**
+     * Dynamically access a property.
+     */
+    public function __get(string $name): int
+    {
+        if ($name === 'size') {
+            return $this->length;
+        }
+
+        throw new InvalidArgumentException('Undefined property: ' . $name);
+    }
+
+    /**
+     * Dynamically write value to property.
+     */
+    public function __set(string $name, mixed $value): void
+    {
+        throw new InvalidArgumentException('Property [' . $name . '] is immutable');
+    }
+
+    /**
+     * Dynamically check a property exists.
+     */
+    public function __isset(string $name): bool
+    {
+        return isset($this->{$name});
     }
 
     /**

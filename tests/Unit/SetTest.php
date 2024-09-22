@@ -226,3 +226,41 @@ test('has', function (mixed $key, bool $expected) {
     [null, false],
     ['bar', true],
 ]);
+
+describe('magic methods', function () {
+    it('access a property', function () {
+        $set = new Set();
+
+        expect($set->size)
+            ->toBe(0);
+    });
+
+    it('cannot access non existing property', function () {
+        $set = new Set();
+
+        /** @phpstan-ignore-line  */
+        expect(fn () => $set->length)->toThrow(
+            exception: InvalidArgumentException::class,
+            exceptionMessage: 'Undefined property: length',
+        );
+    });
+
+    it('cannot mutable private property', function () {
+        $set = new Set();
+
+        expect(fn () => $set->size = 1)->toThrow(
+            exception: InvalidArgumentException::class,
+            exceptionMessage: 'Property [size] is immutable',
+        );
+    });
+
+    it('check a property exists', function (string $name, bool $expected) {
+        $set = new Set();
+
+        expect(isset($set->{$name}))
+            ->toBe($expected);
+    })->with([
+        ['size', false],
+        ['length', true],
+    ]);
+});
