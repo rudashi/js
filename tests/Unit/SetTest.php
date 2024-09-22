@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use InvalidArgumentException;
 use Rudashi\JavaScript\Set;
 use stdClass;
 use Tests\Fixtures\TraversableObject;
