@@ -84,6 +84,16 @@ final class Set
     }
 
     /**
+     * Removes all elements from the Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear
+     */
+    public function clear(): void
+    {
+        $this->items = [];
+        $this->length = 0;
+    }
+
+    /**
      * Remove a specified element from the Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/get
      *

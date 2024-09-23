@@ -241,6 +241,24 @@ describe('add', function () {
     });
 });
 
+describe('clear', function () {
+    test('removes all elements', function () {
+        $set = new Set([1, ['foo' => 'bar'], 3]);
+
+        $set->clear();
+
+        expect($set->size)
+            ->tobe(0);
+    });
+
+    test('returns void', function () {
+        $reflection = reflectMethod(Set::class, 'clear');
+
+        expect($reflection->getReturnType())
+            ->getName()->toBe('void');
+    });
+});
+
 describe('delete', function () {
     test('returns true on success', function () {
         $set = new Set([1, 'foo', 3]);
