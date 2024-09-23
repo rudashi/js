@@ -15,7 +15,7 @@ use Traversable;
 final class Set
 {
     /**
-     * The items contained in the Map.
+     * The items contained in the Set.
      *
      * @var array<int, TValue>
      */
@@ -72,7 +72,7 @@ final class Set
      * @param  TValue  $value
      *
      * @return \Rudashi\JavaScript\Set<TValue>
- */
+     */
     public function add(mixed $value): self
     {
         if (! $this->has($value)) {
