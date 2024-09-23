@@ -8,6 +8,10 @@ arch()->preset()->php();
 
 arch()->preset()->security();
 
+arch('no debug')
+    ->expect('Rudashi\JavaScript')
+    ->not->toUse(['die', 'dd', 'dump']);
+
 arch('strict types')
     ->expect('Rudashi\JavaScript')
     ->toUseStrictTypes();
