@@ -6,6 +6,7 @@ namespace Tests\Unit;
 
 use InvalidArgumentException;
 use Rudashi\JavaScript\Set;
+use Rudashi\JavaScript\SetIterator;
 use stdClass;
 use Tests\Fixtures\TraversableObject;
 
@@ -272,6 +273,42 @@ describe('delete', function () {
 
         expect($set->delete('bar'))
             ->toBeFalse();
+    });
+});
+
+describe('entries', function () {
+    it('returns new SetIterator', function () {
+        $set = new Set(['foo', 'bar']);
+
+        $newSet = $set->entries();
+
+        expect($newSet)
+            ->toBeInstanceOf(SetIterator::class)
+            ->current()?->toBe(['foo', 'foo'])
+            ->next()?->toBe(['bar', 'bar']);
+    });
+
+    it('returns Set elements', function () {
+        $set = new Set(['foo', 'bar', 'baz', '2', 'boo']);
+
+        $newSet = $set->entries();
+
+        expect($newSet)
+            ->toBeInstanceOf(SetIterator::class)
+            ->current()?->toBe(['foo', 'foo'])
+            ->next()?->toBe(['bar', 'bar'])
+            ->next()?->toBe(['baz', 'baz']);
+    });
+
+    it('returns null when no more value is present', function () {
+        $set = new Set(['foo']);
+
+        $newSet = $set->entries();
+
+        expect($newSet)
+            ->toBeInstanceOf(SetIterator::class)
+            ->current()?->toBe(['foo', 'foo'])
+            ->next()?->toBeNull();
     });
 });
 

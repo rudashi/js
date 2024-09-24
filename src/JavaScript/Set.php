@@ -112,6 +112,17 @@ final class Set
     }
 
     /**
+     * Returns Set value of each element as SetIterator.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries
+     *
+     * @return \Rudashi\JavaScript\SetIterator<int, TValue>
+     */
+    public function entries(): SetIterator
+    {
+        return new SetIterator($this->items);
+    }
+
+    /**
      * Determine if an element with given value exists in the Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has
      *
