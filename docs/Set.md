@@ -8,6 +8,7 @@ The Set object holds only unique values of any type.
 - [`Set::add()`](#setadd)
 - [`Set::clear()`](#setclear)
 - [`Set::delete()`](#setdelete)
+- [`Set::entries()`](#setentries)
 - [`Set::has()`](#sethas)
 - [`Set::size`](#setsize)
 
@@ -83,6 +84,20 @@ $set->delete('foo');
 
 $set->delete(1);
 // false
+```
+
+### Set::entries()
+
+The `entries()` method returns a new `SetIterator` instance that contain pair array `[value, value]` of each element of the Set.
+
+```php
+$set = new Set(['foo', 'bar']);
+
+$iterator = $set->entries();
+// [object SetIterator]
+
+$iterator->current();
+// ['foo', ''foo']
 ```
 
 ### Set::has()
