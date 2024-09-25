@@ -16,6 +16,10 @@ arch('strict types')
     ->expect('Rudashi\JavaScript')
     ->toUseStrictTypes();
 
+arch('strict equality')
+    ->expect('Rudashi\JavaScript')
+    ->toUseStrictEquality();
+
 arch('closed for extension')
     ->expect('Rudashi\JavaScript')
     ->classes()
