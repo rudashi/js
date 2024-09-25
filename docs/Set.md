@@ -9,6 +9,7 @@ The Set object holds only unique values of any type.
 - [`Set::clear()`](#setclear)
 - [`Set::delete()`](#setdelete)
 - [`Set::entries()`](#setentries)
+- [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
 - [`Set::size`](#setsize)
 
@@ -98,6 +99,18 @@ $iterator = $set->entries();
 
 $iterator->current();
 // ['foo', ''foo']
+```
+
+### Set::forEach()
+
+The `forEach()` method executes a provided function once per each element of the Set.
+
+```php
+$set = new Set([3, 0]);
+
+$set->forEach(function (int $value1, int $value2, Set $set) {
+    // ...
+});
 ```
 
 ### Set::has()
