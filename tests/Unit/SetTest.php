@@ -312,6 +312,56 @@ describe('entries', function () {
     });
 });
 
+describe('forEach', function () {
+    test('iterate on every element', function () {
+        $result = [];
+
+        (new Set([2, 5, 9]))->forEach(function ($value1, $value2) use (&$result) {
+            $result[$value1] = $value2 * 2;
+        });
+
+        expect($result)
+            ->toBeArray()
+            ->toMatchArray([2 => 4, 5 => 10, 9 => 18]);
+    });
+
+    test('not change original Set', function () {
+        $result = [];
+
+        $set = new Set([2, 5, 9]);
+        $set->forEach(function ($value1, $value2) use (&$result) {
+            $result[$value1] = $value2 * 2;
+        });
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([2, 5, 9]);
+    });
+
+    test('has access to Set inside loop', function () {
+        $result = [];
+
+        $set = new Set([2, 5, 9]);
+        $set->forEach(function ($value1, $value2, $Set) use (&$result) {
+            $result[] = $Set;
+        });
+
+        expect($result)
+            ->toBeArray()
+            ->each->toBeInstanceOf(Set::class);
+    });
+
+    test('can use arrow function', function () {
+        $set = new Set();
+
+        (new Set([2, 5, 9]))->forEach(fn ($value, $key) => $set->add($value * 2));
+
+        expect($set)
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([4, 10, 18]);
+    });
+});
+
 test('has', function (mixed $key, bool $expected) {
     $set = new Set([1, 'foo' => 'bar', 3]);
 

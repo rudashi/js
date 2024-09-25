@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rudashi\JavaScript;
 
+use Closure;
 use InvalidArgumentException;
 use Traversable;
 
@@ -120,6 +121,19 @@ final class Set
     public function entries(): SetIterator
     {
         return new SetIterator($this->items);
+    }
+
+    /**
+     * Execute a callback over each item.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach
+     *
+     * @param  \Closure(TValue, TValue, \Rudashi\JavaScript\Set<TValue>): void  $callback
+     */
+    public function forEach(Closure $callback): void
+    {
+        foreach ($this->items as $item) {
+            $callback($item, $item, $this);
+        }
     }
 
     /**
