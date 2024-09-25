@@ -107,7 +107,7 @@ final class Map
     }
 
     /**
-     * Returns a specified element by a key.
+     * Execute a callback over each item.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
      *
      * @param  \Closure(TValue, TKey, \Rudashi\JavaScript\Map<TKey, TValue>): void  $callback
