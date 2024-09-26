@@ -48,16 +48,34 @@ test('loop SetIterator', function () {
     );
 });
 
-test('get current element', function () {
-    $iterator = new SetIterator(['1', '2', '3']);
+describe('current', function () {
+    test('get current element', function () {
+        $iterator = new SetIterator(['1', '2', '3']);
 
-    expect($iterator->current())
-        ->toBe(['1', '1']);
+        expect($iterator->current())
+            ->toBe('1');
+    });
+
+    test('get current array element', function () {
+        $iterator = new SetIterator([['1', '1'], ['2', '2']]);
+
+        expect($iterator->current())
+            ->toBe(['1', '1']);
+    });
 });
 
 describe('next', function () {
     test('get next element', function () {
         $iterator = new SetIterator(['1', '2', '3']);
+
+        expect($iterator)
+            ->current()?->toBe('1')
+            ->next()?->toBe('2')
+            ->next()?->toBe('3');
+    });
+
+    test('get next array element', function () {
+        $iterator = new SetIterator([['1', '1'], ['2', '2'], ['3', '3']]);
 
         expect($iterator)
             ->current()?->toBe(['1', '1'])
@@ -69,8 +87,8 @@ describe('next', function () {
         $iterator = new SetIterator(['1', '2', '3']);
 
         expect($iterator)
-            ->next()?->toBe(['2', '2'])
-            ->next()?->toBe(['3', '3']);
+            ->next()?->toBe('2')
+            ->next()?->toBe('3');
     });
 });
 

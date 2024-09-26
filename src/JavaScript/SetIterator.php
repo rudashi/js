@@ -28,9 +28,9 @@ final class SetIterator implements IteratorAggregate
     /**
      * Returns next element.
      *
-     * @return array<array-key, TValue>|null
+     * @return TValue|null
      */
-    public function next(): array|null
+    public function next(): mixed
     {
         ++$this->position;
 
@@ -40,13 +40,11 @@ final class SetIterator implements IteratorAggregate
     /**
      * Returns current element.
      *
-     * @return array<array-key, TValue>|null
+     * @return TValue|null
      */
-    public function current(): array|null
+    public function current(): mixed
     {
-        $value = $this->items[$this->position] ?? null;
-
-        return $value ? [$value, $value] : null;
+        return $this->items[$this->position] ?? null;
     }
 
     /**
