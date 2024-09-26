@@ -209,6 +209,17 @@ describe('entries', function () {
             ->next()?->toBe([0 => 'baz'])
             ->next()?->toBe(['2' => 'boo']);
     });
+
+    it('returns null when no more value is present', function () {
+        $map = new Map(['foo']);
+
+        $newMap = $map->entries();
+
+        expect($newMap)
+            ->toBeInstanceOf(MapIterator::class)
+            ->current()?->toBe([0 => 'foo'])
+            ->next()?->toBeNull();
+    });
 });
 
 describe('forEach', function () {
