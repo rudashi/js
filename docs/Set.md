@@ -11,6 +11,7 @@ The Set object holds only unique values of any type.
 - [`Set::entries()`](#setentries)
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
+- [`Set::values()`](#setvalues)
 - [`Set::size`](#setsize)
 
 ## Constructor
@@ -125,6 +126,23 @@ $set->has(1);
 
 $set->has(6);
 // false
+```
+
+### Set::values()
+
+The `values()` method returns a new `SetIterator` instance that contain the values of each element of the Set.
+
+```php
+$set = new Set(['foo', 'bar']);
+
+$iterator = $set->values();
+// [object SetIterator]
+
+$iterator->current();
+// 'foo'
+
+$iterator->next();
+// 'bar'
 ```
 
 ## Properties
