@@ -116,11 +116,11 @@ final class Set
      * Returns Set value of each element as SetIterator.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries
      *
-     * @return \Rudashi\JavaScript\SetIterator<int, TValue>
+     * @return \Rudashi\JavaScript\SetIterator<int, array{TValue, TValue}>
      */
     public function entries(): SetIterator
     {
-        return new SetIterator($this->items);
+        return new SetIterator(array_map(static fn ($item): array => [$item, $item], $this->items));
     }
 
     /**
