@@ -156,6 +156,17 @@ final class Set
     }
 
     /**
+     * Returns Set values as SetIterator.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values
+     *
+     * @return \Rudashi\JavaScript\SetIterator<int, TValue>
+     */
+    public function values(): SetIterator
+    {
+        return new SetIterator($this->items);
+    }
+
+    /**
      * @param  iterable<array-key, TValue>  $items
      *
      * @return array<array-key, TValue>

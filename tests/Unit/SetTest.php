@@ -378,6 +378,30 @@ test('has', function (mixed $key, bool $expected) {
     ['bar', true],
 ]);
 
+describe('values', function () {
+    it('returns new SetIterator', function () {
+        $set = new Set(['foo', 'bar']);
+
+        $newMap = $set->values();
+
+        expect($newMap)
+            ->toBeInstanceOf(SetIterator::class)
+            ->current()?->toBe('foo')
+            ->next()?->toBe('bar');
+    });
+
+    it('returns values', function () {
+        $set = new Set(['foo' => 'bar', 'baz' => 'boo']);
+
+        $newMap = $set->values();
+
+        expect($newMap)
+            ->toBeInstanceOf(SetIterator::class)
+            ->current()?->toBe('bar')
+            ->next()?->toBe('boo');
+    });
+});
+
 describe('magic methods', function () {
     it('access a property', function () {
         $set = new Set();
