@@ -148,6 +148,18 @@ final class Set
     }
 
     /**
+     * Returns Set keys as SetIterator.
+     * Alias for the values()
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys
+     *
+     * @return \Rudashi\JavaScript\SetIterator<int, TValue>
+     */
+    public function keys(): SetIterator
+    {
+        return $this->values();
+    }
+
+    /**
      * @return array<int, TValue>
      */
     public function toArray(): array

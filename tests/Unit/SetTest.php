@@ -378,6 +378,17 @@ test('has', function (mixed $key, bool $expected) {
     ['bar', true],
 ]);
 
+describe('keys', function () {
+    it('returns new SetIterator', function () {
+        $set = new Set(['foo', 'bar']);
+
+        expect($set->keys())
+            ->toBeInstanceOf(SetIterator::class)
+            ->current()?->toBe('foo')
+            ->next()?->toBe('bar');
+    });
+});
+
 describe('values', function () {
     it('returns new SetIterator', function () {
         $set = new Set(['foo', 'bar']);
