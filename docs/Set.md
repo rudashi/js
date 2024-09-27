@@ -11,6 +11,7 @@ The Set object holds only unique values of any type.
 - [`Set::entries()`](#setentries)
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
+- [`Set::keys()`](#setkeys)
 - [`Set::values()`](#setvalues)
 - [`Set::size`](#setsize)
 
@@ -126,6 +127,20 @@ $set->has(1);
 
 $set->has(6);
 // false
+```
+
+### Set::keys()
+
+The `keys()` method is exactly equivalent to the [values()](#setvalues) method.
+
+```php
+$set = new Set(['foo' => 'bar']);
+
+$iterator = $set->keys();
+// [object SetIterator]
+
+$iterator->current();
+// 'foo'
 ```
 
 ### Set::values()
