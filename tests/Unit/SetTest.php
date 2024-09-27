@@ -387,6 +387,14 @@ describe('keys', function () {
             ->current()?->toBe('foo')
             ->next()?->toBe('bar');
     });
+
+    test('keys are equivalent to values()', function () {
+        $set = new Set(['foo' => 'bar']);
+
+        expect($set->keys())
+            ->toBeInstanceOf(SetIterator::class)
+            ->toArray()->toBe($set->values()->toArray());
+    });
 });
 
 describe('values', function () {
@@ -410,6 +418,14 @@ describe('values', function () {
             ->toBeInstanceOf(SetIterator::class)
             ->current()?->toBe('bar')
             ->next()?->toBe('boo');
+    });
+
+    test('is equivalent to keys() method', function () {
+        $set = new Set(['foo', 'bar']);
+
+        expect($set->values())
+            ->toBeInstanceOf(SetIterator::class)
+            ->toArray()->toBe($set->keys()->toArray());
     });
 });
 
