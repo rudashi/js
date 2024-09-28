@@ -276,6 +276,44 @@ describe('delete', function () {
     });
 });
 
+describe('difference', function () {
+    test('diff values', function () {
+        $odds = new Set([1, 3, 5, 7, 9]);
+        $squares = new Set([1, 4, 9]);
+
+        expect($odds->difference($squares))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([3, 5, 7]);
+    });
+
+    test('returns empty Set', function () {
+        $a = new Set([1, 2, 3, 4]);
+        $b = new Set([2, 4, 3, 2]);
+
+        expect($b->difference($a))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([]);
+    });
+
+    test('`a` minus `b`', function () {
+        $a = new Set([1, 2, 3, 4]);
+        $b = new Set([5, 4, 3, 2]);
+
+        expect($a->difference($b))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([1]);
+    });
+
+    test('`b` minus `a`', function () {
+        $a = new Set([1, 2, 3, 4]);
+        $b = new Set([5, 4, 3, 2]);
+
+        expect($b->difference($a))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([5]);
+    });
+});
+
 describe('entries', function () {
     it('returns new SetIterator', function () {
         $set = new Set(['foo', 'bar']);

@@ -113,6 +113,19 @@ final class Set
     }
 
     /**
+     * Returns a new Set containing elements in given Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference
+     *
+     * @param \Rudashi\JavaScript\Set<TValue> $other
+     *
+     * @return \Rudashi\JavaScript\Set<TValue>
+     */
+    public function difference(Set $other): Set
+    {
+        return new Set(array_diff($this->items, $other->items));
+    }
+
+    /**
      * Returns Set value of each element as SetIterator.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries
      *
