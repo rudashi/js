@@ -435,6 +435,35 @@ describe('keys', function () {
     });
 });
 
+describe('union', function () {
+    test('merge values', function () {
+        $odds = new Set([1, 3, 5, 7, 9]);
+        $squares = new Set([1, 4, 9]);
+
+        expect($odds->union($squares))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([1, 3, 5, 7, 9, 4]);
+    });
+
+    test('`a` plus `b`', function () {
+        $a = new Set([1, 2, 3, 4]);
+        $b = new Set([5, 4, 3, 2]);
+
+        expect($a->union($b))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([1, 2, 3, 4, 5]);
+    });
+
+    test('`b` plus `a`', function () {
+        $a = new Set([1, 2, 3, 4]);
+        $b = new Set([5, 4, 3, 2]);
+
+        expect($b->union($a))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray([5, 4, 3, 2, 1]);
+    });
+});
+
 describe('values', function () {
     it('returns new SetIterator', function () {
         $set = new Set(['foo', 'bar']);

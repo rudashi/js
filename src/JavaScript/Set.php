@@ -181,6 +181,19 @@ final class Set
     }
 
     /**
+     * Merge the Set with the given Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union
+     *
+     * @param \Rudashi\JavaScript\Set<TValue> $other
+     *
+     * @return \Rudashi\JavaScript\Set<TValue>
+     */
+    public function union(Set $other): Set
+    {
+        return new Set([...$this->items, ...$other->items]);
+    }
+
+    /**
      * Returns Set values as SetIterator.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values
      *
