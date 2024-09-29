@@ -8,6 +8,7 @@ The Set object holds only unique values of any type.
 - [`Set::add()`](#setadd)
 - [`Set::clear()`](#setclear)
 - [`Set::delete()`](#setdelete)
+- [`Set::difference()`](#setdifference)
 - [`Set::entries()`](#setentries)
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
@@ -88,6 +89,18 @@ $set->delete('foo');
 
 $set->delete(1);
 // false
+```
+
+### Set::difference()
+
+The `difference()` method returns a new Set containing elements in this Set but not in the given Set.
+
+```php
+$odds = new Set([1, 3, 5, 7, 9]);
+$squares = new Set([1, 4, 9]);
+
+$set->difference($squares);
+// Set[3, 5, 7]
 ```
 
 ### Set::entries()
