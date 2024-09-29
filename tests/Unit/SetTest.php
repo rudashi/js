@@ -276,44 +276,6 @@ describe('delete', function () {
     });
 });
 
-describe('difference', function () {
-    test('diff values', function () {
-        $odds = new Set([1, 3, 5, 7, 9]);
-        $squares = new Set([1, 4, 9]);
-
-        expect($odds->difference($squares))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([3, 5, 7]);
-    });
-
-    test('returns empty Set', function () {
-        $a = new Set([1, 2, 3, 4]);
-        $b = new Set([2, 4, 3, 2]);
-
-        expect($b->difference($a))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([]);
-    });
-
-    test('`a` minus `b`', function () {
-        $a = new Set([1, 2, 3, 4]);
-        $b = new Set([5, 4, 3, 2]);
-
-        expect($a->difference($b))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([1]);
-    });
-
-    test('`b` minus `a`', function () {
-        $a = new Set([1, 2, 3, 4]);
-        $b = new Set([5, 4, 3, 2]);
-
-        expect($b->difference($a))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([5]);
-    });
-});
-
 describe('entries', function () {
     it('returns new SetIterator', function () {
         $set = new Set(['foo', 'bar']);
@@ -435,35 +397,6 @@ describe('keys', function () {
     });
 });
 
-describe('union', function () {
-    test('merge values', function () {
-        $odds = new Set([1, 3, 5, 7, 9]);
-        $squares = new Set([1, 4, 9]);
-
-        expect($odds->union($squares))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([1, 3, 5, 7, 9, 4]);
-    });
-
-    test('`a` plus `b`', function () {
-        $a = new Set([1, 2, 3, 4]);
-        $b = new Set([5, 4, 3, 2]);
-
-        expect($a->union($b))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([1, 2, 3, 4, 5]);
-    });
-
-    test('`b` plus `a`', function () {
-        $a = new Set([1, 2, 3, 4]);
-        $b = new Set([5, 4, 3, 2]);
-
-        expect($b->union($a))
-            ->toBeInstanceOf(Set::class)
-            ->toMatchArray([5, 4, 3, 2, 1]);
-    });
-});
-
 describe('values', function () {
     it('returns new SetIterator', function () {
         $set = new Set(['foo', 'bar']);
@@ -494,6 +427,35 @@ describe('values', function () {
             ->toBeInstanceOf(SetIterator::class)
             ->toArray()->toBe($set->keys()->toArray());
     });
+});
+
+describe('operations method', function () {
+    test('difference', function (array $a, array $b, array $expected) {
+        $set_a = new Set($a);
+        $set_b = new Set($b);
+
+        expect($set_a->difference($set_b))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($expected);
+    })->with([
+        'default' => [[1, 3, 5, 7, 9], [1, 4, 9], [3, 5, 7]],
+        'empty' => [[1, 2, 3, 4], [2, 4, 3, 2], []],
+        '`a` minus `b`' => [[1, 2, 3, 4], [5, 4, 3, 2], [1]],
+        '`b` minus `a`' => [[5, 4, 3, 2], [1, 2, 3, 4], [5]],
+    ]);
+
+    test('union', function (array $a, array $b, array $expected) {
+        $set_a = new Set($a);
+        $set_b = new Set($b);
+
+        expect($set_a->union($set_b))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($expected);
+    })->with([
+        'default' => [[1, 3, 5, 7, 9], [1, 4, 9], [1, 3, 5, 7, 9, 4]],
+        '`a` plus `b`' => [[1, 2, 3, 4], [5, 4, 3, 2], [1, 2, 3, 4, 5]],
+        '`b` plus `a`' => [[5, 4, 3, 2], [1, 2, 3, 4], [5, 4, 3, 2, 1]],
+    ]);
 });
 
 describe('magic methods', function () {
