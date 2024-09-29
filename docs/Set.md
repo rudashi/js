@@ -12,6 +12,7 @@ The Set object holds only unique values of any type.
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
 - [`Set::keys()`](#setkeys)
+- [`Set::union()`](#setunion)
 - [`Set::values()`](#setvalues)
 - [`Set::size`](#setsize)
 
@@ -141,6 +142,18 @@ $iterator = $set->keys();
 
 $iterator->current();
 // 'foo'
+```
+
+### Set::union()
+
+The `union()` method returns a new Set containing elements from both Sets.
+
+```php
+$odds = new Set([1, 3, 5, 7, 9]);
+$squares = new Set([1, 4, 9]);
+
+$set->union($squares);
+// Set[1, 3, 5, 7, 9, 4]
 ```
 
 ### Set::values()
