@@ -363,7 +363,7 @@ describe('forEach', function () {
 });
 
 describe('has', function () {
-    it('returns true on non exists', function (mixed $key) {
+    it('returns true when value exists', function (mixed $key) {
         $set = new Set([1, 'foo' => 'bar', 3]);
 
         expect($set->has($key))
