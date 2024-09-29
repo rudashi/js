@@ -362,21 +362,21 @@ describe('forEach', function () {
     });
 });
 
-test('has', function (mixed $key, bool $expected) {
-    $set = new Set([1, 'foo' => 'bar', 3]);
+describe('has', function () {
+    it('returns true on non exists', function (mixed $key) {
+        $set = new Set([1, 'foo' => 'bar', 3]);
 
-    expect($set->has($key))
-        ->toBe($expected);
-})->with([
-    [0, false],
-    ['foo', false],
-    [1, true],
-    ['1', false],
-    [2, false],
-    [3, true],
-    [null, false],
-    ['bar', true],
-]);
+        expect($set->has($key))
+            ->toBeTrue();
+    })->with([1, 3, 'bar']);
+
+    it('returns false on non exists', function (mixed $key) {
+        $set = new Set([1, 'foo' => 'bar', 3]);
+
+        expect($set->has($key))
+            ->toBeFalse();
+    })->with([0, 'foo', '1', 2, null]);
+});
 
 describe('keys', function () {
     it('returns new SetIterator', function () {
