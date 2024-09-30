@@ -173,6 +173,19 @@ final class Set
         return new Set(array_intersect($this->items, $other->items));
     }
 
+    public function isSubsetOf(Set $other): bool
+    {
+        $values = array_flip($other->items);
+
+        foreach ($this->items as $value) {
+            if (($values[$value] ?? null) === null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /**
      * Returns Set keys as SetIterator.
      * Alias for the values()
