@@ -444,6 +444,19 @@ describe('operations method', function () {
         '`b` minus `a`' => [[5, 4, 3, 2], [1, 2, 3, 4], [5]],
     ]);
 
+    test('intersection', function (array $a, array $b, array $expected) {
+        $set_a = new Set($a);
+        $set_b = new Set($b);
+
+        expect($set_a->intersection($set_b))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($expected);
+    })->with([
+        'default' => [[1, 3, 5, 7, 9], [1, 4, 9], [1, 9]],
+        '`a` | `b`' => [[1, 2, 3, 4], [5, 4, 3, 2], [2, 3, 4]],
+        '`b` | `a`' => [[5, 4, 3, 2], [1, 2, 3, 4], [4, 3, 2]],
+    ]);
+
     test('union', function (array $a, array $b, array $expected) {
         $set_a = new Set($a);
         $set_b = new Set($b);

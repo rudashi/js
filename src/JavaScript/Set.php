@@ -161,6 +161,19 @@ final class Set
     }
 
     /**
+     * Returns a new Set containing elements from both Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection
+     *
+     * @param \Rudashi\JavaScript\Set<TValue> $other
+     *
+     * @return \Rudashi\JavaScript\Set<TValue>
+     */
+    public function intersection(Set $other): Set
+    {
+        return new Set(array_intersect($this->items, $other->items));
+    }
+
+    /**
      * Returns Set keys as SetIterator.
      * Alias for the values()
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys
