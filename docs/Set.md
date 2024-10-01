@@ -12,6 +12,7 @@ The Set object holds only unique values of any type.
 - [`Set::entries()`](#setentries)
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
+- [`Set::intersection()`](#setintersection)
 - [`Set::keys()`](#setkeys)
 - [`Set::union()`](#setunion)
 - [`Set::values()`](#setvalues)
@@ -141,6 +142,18 @@ $set->has(1);
 
 $set->has(6);
 // false
+```
+
+### Set::intersection()
+
+The `intersection()` method returns a new set containing only those elements that exist in both sets.
+
+```php
+$odds = new Set([1, 3, 5, 7, 9]);
+$squares = new Set([1, 4, 9]);
+
+$set->union($squares);
+// Set[1, 9]
 ```
 
 ### Set::keys()
