@@ -191,6 +191,17 @@ final class Set
     }
 
     /**
+     * Determine if all elements of given Set exists in the Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSupersetOf
+     *
+     * @param \Rudashi\JavaScript\Set<TValue> $other
+     */
+    public function isSupersetOf(Set $other): bool
+    {
+        return $other->isSubsetOf($this);
+    }
+
+    /**
      * Returns Set keys as SetIterator.
      * Alias for the values()
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys
