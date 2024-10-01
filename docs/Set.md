@@ -14,6 +14,7 @@ The Set object holds only unique values of any type.
 - [`Set::has()`](#sethas)
 - [`Set::intersection()`](#setintersection)
 - [`Set::isSubsetOf()`](#setissubsetof)
+- [`Set::isSupersetOf()`](#setissupersetof)
 - [`Set::keys()`](#setkeys)
 - [`Set::union()`](#setunion)
 - [`Set::values()`](#setvalues)
@@ -166,6 +167,18 @@ $fours = new Set([4, 8, 12, 16]);
 $evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
 
 $fours->isSubsetOf($evens);
+// true
+```
+
+### Set::isSupersetOf()
+
+The `isSupersetOf()` method checks if all elements of the given Set are in the Set.
+
+```php
+$evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+$fours = new Set([4, 8, 12, 16]);
+
+$evens->isSupersetOf($fours);
 // true
 ```
 
