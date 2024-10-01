@@ -471,6 +471,21 @@ describe('operations method', function () {
     ]);
 });
 
+describe('subset and superset', function () {
+    it('subset', function (array $a, array $b, bool $expected) {
+        $set_a = new Set($a);
+        $set_b = new Set($b);
+
+        expect($set_a->isSubsetOf($set_b))
+            ->toBeBool()
+            ->tobe($expected);
+    })->with([
+        'true' => [[4, 8, 12, 16], [2, 4, 6, 8, 10, 12, 14, 16, 18], true],
+        'false' => [[2, 3, 5, 7, 11, 13, 17, 19], [3, 5, 7, 9, 11, 13, 15, 17, 19], false],
+        'same' => [[1, 2, 3], [1, 2, 3], true],
+    ]);
+});
+
 describe('magic methods', function () {
     it('access a property', function () {
         $set = new Set();

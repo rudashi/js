@@ -173,12 +173,16 @@ final class Set
         return new Set(array_intersect($this->items, $other->items));
     }
 
+    /**
+     * Determine if all elements exists in the given Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSubsetOf
+     *
+     * @param \Rudashi\JavaScript\Set<TValue> $other
+     */
     public function isSubsetOf(Set $other): bool
     {
-        $values = array_flip($other->items);
-
         foreach ($this->items as $value) {
-            if (($values[$value] ?? null) === null) {
+            if ($other->has($value) === false) {
                 return false;
             }
         }
