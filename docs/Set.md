@@ -13,6 +13,7 @@ The Set object holds only unique values of any type.
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
 - [`Set::intersection()`](#setintersection)
+- [`Set::isSubsetOf()`](#setissubsetof)
 - [`Set::keys()`](#setkeys)
 - [`Set::union()`](#setunion)
 - [`Set::values()`](#setvalues)
@@ -154,6 +155,18 @@ $squares = new Set([1, 4, 9]);
 
 $set->union($squares);
 // Set[1, 9]
+```
+
+### Set::isSubsetOf()
+
+The `isSubsetOf()` method checks if all elements of a Set are in a given Set.
+
+```php
+$fours = new Set([4, 8, 12, 16]);
+$evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+
+$fours->isSubsetOf($evens);
+// true
 ```
 
 ### Set::keys()
