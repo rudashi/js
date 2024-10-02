@@ -214,6 +214,22 @@ final class Set
     }
 
     /**
+     * Determine if all elements of given Set exists in the Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference
+     *
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
+     *
+     * @return \Rudashi\JavaScript\Set<TValue>
+     */
+    public function symmetricDifference(Set $other): Set
+    {
+        return new Set([
+            ...array_diff($this->items, $other->items),
+            ...array_diff($other->items, $this->items),
+        ]);
+    }
+
+    /**
      * @return array<int, TValue>
      */
     public function toArray(): array

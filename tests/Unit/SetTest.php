@@ -469,6 +469,20 @@ describe('operations method', function () {
         '`a` plus `b`' => [[1, 2, 3, 4], [5, 4, 3, 2], [1, 2, 3, 4, 5]],
         '`b` plus `a`' => [[5, 4, 3, 2], [1, 2, 3, 4], [5, 4, 3, 2, 1]],
     ]);
+
+    test('symmetric difference', function (array $a, array $b, array $expected) {
+        $set_a = new Set($a);
+        $set_b = new Set($b);
+
+        expect($set_a->symmetricDifference($set_b))
+            ->toBeInstanceOf(Set::class)
+            ->toMatchArray($expected);
+    })->with([
+        'default' => [[2, 4, 6, 8], [1, 4, 9], [2, 6, 8, 1, 9]],
+        '`a` ⊖ `b`' => [[1, 2, 3, 4], [5, 4, 3, 2], [1, 5]],
+        '`b` ⊖ `a`' => [[5, 4, 3, 2], [1, 2, 3, 4], [5, 1]],
+        'same' => [[1, 4, 9], [1, 4, 9], []],
+    ]);
 });
 
 describe('subset and superset', function () {
