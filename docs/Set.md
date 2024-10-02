@@ -154,7 +154,7 @@ The `intersection()` method returns a new set containing only those elements tha
 $odds = new Set([1, 3, 5, 7, 9]);
 $squares = new Set([1, 4, 9]);
 
-$set->union($squares);
+$odds->intersection($squares);
 // Set[1, 9]
 ```
 
