@@ -16,6 +16,7 @@ The Set object holds only unique values of any type.
 - [`Set::isSubsetOf()`](#setissubsetof)
 - [`Set::isSupersetOf()`](#setissupersetof)
 - [`Set::keys()`](#setkeys)
+- [`Set::symmetricDifference()`](#setsymmetricdifference)
 - [`Set::union()`](#setunion)
 - [`Set::values()`](#setvalues)
 - [`Set::size`](#setsize)
@@ -194,6 +195,18 @@ $iterator = $set->keys();
 
 $iterator->current();
 // 'foo'
+```
+
+### Set::symmetricDifference()
+
+The `symmetricDifference()` method returns a new Set containing elements that not in both Sets.
+
+```php
+$evens = new Set([2, 4, 6, 8]);
+$squares = new Set([1, 4, 9]);
+
+$evens->symmetricDifference($squares);
+// Set[2, 6, 8, 1, 9 ]
 ```
 
 ### Set::union()
