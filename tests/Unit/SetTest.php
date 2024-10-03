@@ -511,6 +511,19 @@ describe('subset and superset', function () {
         'false' => [[2, 3, 5, 7, 11, 13, 17, 19], [3, 5, 7, 9, 11, 13, 15, 17, 19], false],
         'same' => [[1, 2, 3], [1, 2, 3], true],
     ]);
+
+    test('disjoint', function (array $a, array $b, bool $expected) {
+        $set_a = new Set($a);
+        $set_b = new Set($b);
+
+        expect($set_a->isDisjointFrom($set_b))
+            ->toBeBool()
+            ->tobe($expected);
+    })->with([
+        'true' => [[2, 3, 5, 7, 11, 13, 17, 19], [1, 4, 9, 16], true],
+        'false' => [[4, 6, 8, 9, 10, 12, 14, 15, 16, 18], [1, 4, 9, 16], false],
+        'same' => [[1, 2, 3], [1, 2, 3], false],
+    ]);
 });
 
 describe('magic methods', function () {

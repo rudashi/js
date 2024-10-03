@@ -174,6 +174,23 @@ final class Set
     }
 
     /**
+     * Determine if all elements not exists in the given Set.
+     * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isDisjointFrom
+     *
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
+     */
+    public function isDisjointFrom(Set $other): bool
+    {
+        foreach ($this->items as $value) {
+            if ($other->has($value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Determine if all elements exists in the given Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSubsetOf
      *
