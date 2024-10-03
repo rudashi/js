@@ -13,6 +13,7 @@ The Set object holds only unique values of any type.
 - [`Set::forEach()`](#setforeach)
 - [`Set::has()`](#sethas)
 - [`Set::intersection()`](#setintersection)
+- [`Set::isDisjointFrom()`](#setisdisjointfrom)
 - [`Set::isSubsetOf()`](#setissubsetof)
 - [`Set::isSupersetOf()`](#setissupersetof)
 - [`Set::keys()`](#setkeys)
@@ -157,6 +158,18 @@ $squares = new Set([1, 4, 9]);
 
 $odds->intersection($squares);
 // Set[1, 9]
+```
+
+### Set::isDisjointFrom()
+
+The `isDisjointFrom()` method checks if Set has no elements in common with the given Set.
+
+```php
+$primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
+$squares = new Set([1, 4, 9, 16]);
+
+$primes->isDisjointFrom($squares);
+// true
 ```
 
 ### Set::isSubsetOf()
