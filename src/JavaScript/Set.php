@@ -116,7 +116,7 @@ final class Set
      * Returns a new Set containing elements in given Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference
      *
-     * @param \Rudashi\JavaScript\Set<TValue> $other
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
      *
      * @return \Rudashi\JavaScript\Set<TValue>
      */
@@ -164,7 +164,7 @@ final class Set
      * Returns a new Set containing elements from both Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection
      *
-     * @param \Rudashi\JavaScript\Set<TValue> $other
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
      *
      * @return \Rudashi\JavaScript\Set<TValue>
      */
@@ -194,7 +194,7 @@ final class Set
      * Determine if all elements exists in the given Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSubsetOf
      *
-     * @param \Rudashi\JavaScript\Set<TValue> $other
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
      */
     public function isSubsetOf(Set $other): bool
     {
@@ -211,7 +211,7 @@ final class Set
      * Determine if all elements of given Set exists in the Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSupersetOf
      *
-     * @param \Rudashi\JavaScript\Set<TValue> $other
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
      */
     public function isSupersetOf(Set $other): bool
     {
@@ -258,7 +258,7 @@ final class Set
      * Merge the Set with the given Set.
      * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union
      *
-     * @param \Rudashi\JavaScript\Set<TValue> $other
+     * @param  \Rudashi\JavaScript\Set<TValue>  $other
      *
      * @return \Rudashi\JavaScript\Set<TValue>
      */
